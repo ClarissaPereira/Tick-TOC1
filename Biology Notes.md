@@ -7,5 +7,8 @@ Identifying molecular clocks can help us better understand inherited disorders, 
 Given that so much of their activity is centred around solar time, molecular clocks are even more vital to the survival of plants. Each plant cell tracks time independently with just three regulatory genes (**LHY**, **CCA1**, and **TOC1**) involved in a negative-feedback loop. During the day, sunlight activates LHY and CCA1 transcription; in turn, these genes repress transcription of TOC1. As night falls, light levels dip and LHY and CCA1 are no longer upregulated. In the absence of repression, TOC1 is transcribed and promotes expression of LHY and CCA1. Each of these regulatory genes encode **transcription factors** that control expresion of many other genes by binding to **regulatory motifs** in their upstream regions.  
 
 ## Identification Techniques
+A wet lab approach to identifying regulatory motifs is to create a DNA array (a collection of short DNA probe molecules attached to a silicone chip). Fluorecently labelled slices of the investigated genome are added to the array and bind to probes via complementary base pairing. The greater the expression of a gene, the greater the intensity of the fluorescent signal. Since an array may contain millions of probes, biologists can measure the expression of many genes in a single array experiment. 
+
+Computational arrays could also be used to identify regulatory motifs. 
 
 One difficulty with using a computational method is that, unlike DnaA boxes which cluster together into clumps, regulatory motifs are scattered throughout the genome.
