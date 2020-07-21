@@ -26,3 +26,4 @@ def basic_motif_search(k, d, DNA):
 DNA = ['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT']
 
 print(basic_motif_search(3, 1,DNA))
+# Output -> ['ATA', 'ATT', 'GTT', 'TTT']
