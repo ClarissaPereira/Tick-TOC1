@@ -1,3 +1,5 @@
+# searches for motifs that appear in each separate DNA string (taking into account up to d mutations) 
+
 import itertools
 
 def all_kmers(k):
