@@ -1,22 +1,26 @@
 import itertools
-string = 'AGCT'
-kmers = itertools.product(string, repeat = 3 )
-new_list = (''.join(w) for w in list(kmers))
-allk = list(new_list)
 
-dna_strings = ['ATTTGGC','TGCCTTA','CGGTATC','GAAAATT']
-patterns1 = []
-for i in dna_strings:
-    for j in range(len(i)-3+1):
-        patterns1.append(i[j:j+3])
+def all_kmers(k):
+    return (''.join(p) for p in itertools.product('ATCG', repeat=k))
 
-for i in patterns1:
-    for j in allk:
-        hamming = 0
-        for l in range(len(j)):
-            if i[l] != j[l]:
-                hamming += 1
-        if hamming <= 1:
-            patterns1.append(j)
+def hamming_distance(pattern, seq):
+    return sum(pattern_base1 != pattern_base2 for pattern_base1, pattern_base2 in zip(pattern, seq))
+# zipping the strings to be compared into tuples cuts down execution time
 
-print(patterns1) 
+def sub_strings(string, k):
+    for i in range(len(string) - k + 1):
+        yield string[i:i+k]
+# making this a function will eliminate need for nested for loops
+
+def basic_motif_search(k, d, DNA):
+    motifs = set()
+    for pos_kmer in all_kmers(k):
+        if all(any(hamming_distance(pos_kmer, sub_string) <= d for sub_string in sub_strings(string, k)) for string in DNA):
+# using the functions 'any' and 'all' will short circuit the execution and so cut down execution time - i.e. won't keep calculating hamming distance if it exceeds d 
+# flattened the previous nested loop
+            motifs.add(pos_kmer)
+    return motifs
+
+DNA = ['ATTTGGC', 'TGCCTTA', 'CGGTATC', 'GAAAATT']
+
+print(basic_motif_search(3, 1,DNA))
