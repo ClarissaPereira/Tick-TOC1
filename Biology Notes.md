@@ -11,3 +11,11 @@ A wet lab approach to identifying regulatory motifs is to create a DNA array (a 
 
 One difficulty with using a computational method is that, unlike DnaA boxes which cluster together into clumps, regulatory motifs are scattered throughout the genome. Motifs only occur at least once (with variations and mutations) in many different genoke regions.  As a result, the [algorithm designed to locate DnaA boxes](https://github.com/ClarissaPereira/Finding-Ori/blob/master/Final%20DnaA%20Box%20Finder.py) in the origin of replication is inadequate at modelling the biological problem of regulatory motif finding. 
 
+## Brute Force Algorithms 
+These algorithms conduct an exhaustive search across a collection of DNA sequences to find all k-mer motifs with up to *d* mismatches. An example is motif enumeration which generates a neighborhood of k-mers with up to d-mismatches for each k-mer in the DNA sequences and then cycles through each k-mer neighborhood again to check for frequently repeated k-mers. Whilst guaranteed to return the correct motifs, brute force algorithms are very inefficient for large datasets and they also rely on the bioinformatician already knowing how much variation can be tolerated.
+
+### brute force algorithms:
+* [motif enumeration (basic motif search)](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/basic_motif_search.py)
+
+
+
