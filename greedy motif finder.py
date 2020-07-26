@@ -31,6 +31,8 @@ def generate_profile(motifs):
     probA, probC, probG, probT = [], [], [], []
     for j in range(len(motifs[0])):
         countA, countC, countG, countT = 0, 0, 0, 0
+        # entire algorithm can be made more accurate if Laplace's rule of succession is applied here
+        # i.e. countA, countC, countG, countT = 1, 1, 1, 1
         for motif in motifs:
             if motif[j] == "A":
                 countA += 1
@@ -90,14 +92,11 @@ def greedy_motif_search(DNA, k):
                 kmer = (string[n:n+k])
                 motifs_profile = generate_profile(kmer_list)
                 prob_dict[kmer] = probability(motifs_profile, kmer)
-            #print(prob_dict)
             if all(value == 0 for value in prob_dict.values()):
                 kmer_list.append(string[:k])
             else:
                 max_prob_kmer = max_key = max(prob_dict, key=prob_dict.get)
                 kmer_list.append(max_prob_kmer)
-        print(kmer_list)
-        print(calculate_score(kmer_list))
         if calculate_score(kmer_list) < calculate_score(best_motif):
             best_motif = kmer_list
     print(best_motif)
