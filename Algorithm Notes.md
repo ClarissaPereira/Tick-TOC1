@@ -44,16 +44,16 @@ Let's consider the probabilities of two possible motif k-mers:  *GTA* and *ATT*
 * P(*GTA*) = 0.0 x 0.0 x 0.0 = 0
 * P(*ATT*) = 1.0 x 0.0 x 1.0 = 0
 
-Both k-mers would have a probability of 0 despite ATT being only one nucleotide off from the consensus string and much closer to the ideal motif than *GTA*. By artificially adjusting the probability of rare events, these problems can be mitigated. We can do this by applying Laplace's Law of Succession and giving each nucleotide in the matrix a starting probability of 1.0 instead of 0.0. The new matrix would look like:
+Both k-mers would have a probability of 0 despite ATT being only one nucleotide off from the consensus string and much closer to the ideal motif than *GTA*. By artificially adjusting the probability of rare events, these problems can be mitigated. We can do this by applying Laplace's Law of Succession and giving each nucleotide in the matrix a pseudocount which starts at 1 - altering the PFM. The new resulting PPM would look like:
 
-[[2.0, 1.0, 1.0, 1.0], 
+[[1/2, 1/6, 1/6, 1/6], 
 
-[1.0, 1.5, 1.5, 1.0],
+[1/6, 1/3, 1/3, 1/6],
 
-[1.0, 1.0, 1.0, 2.0]]
+[1/6, 1/6, 1/6, 1/2]]
 
 And we can again compare the probabilities of two possible motif k-mers:  *GTA* and *ATT* 
-* P(*GTA*) = 1.0 x 1.0 x 1.0 = 1
-* P(*ATT*) = 2.0 x 1.0 x 2.0 = 4
+* P(*GTA*) = 1/6 x 1/6 x 1/6 = 1/216
+* P(*ATT*) = 1/2 x 1/6 x 1/2 = 1/24
 
 This time, the algorithm does not discount *ATT* because, although both k-mers are not perfect matches, *ATT* has a much higher probability than *GTA*.
