@@ -1,3 +1,4 @@
+# Regulatory Motif Search Algorithms
 ## Brute Force Algorithms 
 These algorithms conduct an exhaustive search across a collection of DNA sequences to find all k-mer motifs with up to *d* mismatches. An example is motif enumeration which generates a neighborhood of k-mers with up to d-mismatches for each k-mer in the DNA sequences and then cycles through each k-mer neighborhood again to check for frequently repeated k-mers. Whilst guaranteed to return the correct motifs, brute force algorithms are very inefficient for large datasets and they also rely on the bioinformatician already knowing how much variation can be tolerated.
 
