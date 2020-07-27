@@ -22,10 +22,13 @@ This can be done by creating a **Position Frequency Matrix (PFM)** where each co
 
 PFMs also need to take into account that, in certain positions in the motif, multiple bases may have the same ability to bind to a transcription factor. In the example above, at position 7, both *C* and *T* demonstrate an equal ability to bind to the transcription factor. Therefore, a consensus string that reflects variation for the NF-kB binding site would be *TCGGGGA[C/T]TT[A/C/T]C*. To account for such variation in the consensus string, total entropy can be used in place of a simple score. Entropy is a measure of the uncertainty of a probability distribution. For each column in the PFM, the frequency of a particular base is converted into a probability (creating a **Position Probability Matrix**). Column entropy = the sum of (probability x log<sub>2</sub>probability) for each base in the column. All the column entropies are then added together to calculate the total entropy of the motif matrix. The lower the total entropy, the more conserved the motif matrix is and the better each motif matches the consensus string.
 
- 
+To improve efficiency of the brute force algorithm, we can instead search for a **median motif** which minimise the Hamming distance between itself and each DNA sequence k-mer. Instead of exploring all possible motifs in the collection of DNA sequences and then deriving the consensus string, this new algorithm will explore all potential k-mer consensus strings first and then find the best possible collection Motifs for each consensus string. Therefore, it will run fewer cycles through each DNA sequence, identifying the regulatory motif faster. However, for longer 20-mer motifs, this median motif finder algorithm is still not efficient enough. 
 
 ### brute force algorithms:
-* [motif enumeration (basic motif search)](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/basic_motif_search.py)
+* [motif enumeration](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/basic_motif_search.py)
+* [median motif finder](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/median%20motif%20finder.py)
+
+
 
 
 
