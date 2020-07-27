@@ -28,7 +28,7 @@ To improve efficiency of the brute force algorithm, we can instead search for a 
 * [motif enumeration](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/basic_motif_search.py)
 * [median motif finder](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/median%20motif%20finder.py)
 
-### Greedy Algorithms
+## Greedy Algorithms
 
 
 
