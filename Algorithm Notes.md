@@ -56,7 +56,7 @@ And we can again compare the probabilities of two possible motif k-mers:  *GTA* 
 * P(*GTA*) = 1/6 x 1/6 x 1/6 = 1/216
 * P(*ATT*) = 1/2 x 1/6 x 1/2 = 1/24
 
-This time, the algorithm does not discount *ATT* since, although both k-mers are not perfect matches, *ATT* has a much higher probability than *GTA*.
+The algorithm no longer discounts *ATT* since, although both k-mers are not perfect matches, *ATT* has a much higher probability than *GTA*.
 
 #### greedy algorithms:
 * [greedy motif search](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/greedy%20motif%20finder.py)
