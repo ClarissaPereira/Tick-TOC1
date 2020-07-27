@@ -13,7 +13,7 @@ PFMs also need to take into account that, in certain positions in the motif, mul
 
 To improve efficiency of the brute force algorithm, we can instead search for a **median motif** which minimise the Hamming distance between itself and each DNA sequence k-mer. Instead of exploring all possible motifs in the collection of DNA sequences and then deriving the consensus string, this new algorithm will explore all potential k-mer consensus strings first and then find the best possible collection Motifs for each consensus string. Therefore, it will run fewer cycles through each DNA sequence, identifying the regulatory motif faster. However, for longer 20-mer motifs, this median motif finder algorithm is still not efficient enough. 
 
-### brute force algorithms:
+#### brute force algorithms:
 * [motif enumeration](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/basic_motif_search.py)
 * [median motif finder](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/median%20motif%20finder.py)
 
