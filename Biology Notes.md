@@ -20,7 +20,7 @@ This can be done by creating a **Position Frequency Matrix (PFM)** where each co
 
 ![motif snip](https://user-images.githubusercontent.com/68158694/88489227-fb7e0d00-cf8a-11ea-88c0-6a159ec7f1f6.png)
 
-PFMs also need to take into account that, in certain positions in the motif, multiple bases may have the same ability to bind to a transcription factor. In the example above, at position 7, both *C* and *T* demonstrate an equal ability to bind to the transcription factor. Therefore, a consensus string that reflects variation for the NF-kB binding site would be *TCGGGGA[C/T]TT[A/C/T]C*. To account for such variation in the consensus string, total entropy can be used in place of a simple score. Entropy is a measure of the uncertainty of a probability distribution. For each column in the PFM, the frequency of a particular base is converted into a probability (creating a **Position Probability Matrix**). Column entropy = the sum of (probability x log<sub>2</sub>probability) for each base in the column. All the column entropies are then added together to calculate the total entropy of the motif matrix. The lower the total entropy, the more conserved the motif matrix is and the better each motif matches the consensus string.
+PFMs also need to take into account that, in certain positions in the motif, multiple bases may have the same ability to bind to a transcription factor. In the example above, at position 7, both *C* and *T* demonstrate an equal ability to bind to the transcription factor. Therefore, a consensus string that reflects variation for the NF-kB binding site would be *TCGGGGA[C/T]TT[A/C/T]C*. To account for such variation in the consensus string, total entropy can be used in place of a simple score. Entropy is a measure of the uncertainty of a probability distribution. For each column in the PFM, the frequency of a particular base is converted into a probability (creating a **Position Probability Matrix or PPM**). Column entropy = the sum of (probability x log<sub>2</sub>probability) for each base in the column. All the column entropies are then added together to calculate the total entropy of the motif matrix. The lower the total entropy, the more conserved the motif matrix is and the better each motif matches the consensus string.
 
 To improve efficiency of the brute force algorithm, we can instead search for a **median motif** which minimise the Hamming distance between itself and each DNA sequence k-mer. Instead of exploring all possible motifs in the collection of DNA sequences and then deriving the consensus string, this new algorithm will explore all potential k-mer consensus strings first and then find the best possible collection Motifs for each consensus string. Therefore, it will run fewer cycles through each DNA sequence, identifying the regulatory motif faster. However, for longer 20-mer motifs, this median motif finder algorithm is still not efficient enough. 
 
@@ -29,9 +29,19 @@ To improve efficiency of the brute force algorithm, we can instead search for a 
 * [median motif finder](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/median%20motif%20finder.py)
 
 ## Greedy Algorithms
+Unlike a brute force algorithm which works iteratively through evey possible k-mer to find the regulatory motif, greedy algorithms work heuristically by choosing the optimal k-mer at each step as it attempts to find the overall optimal motif. For instance, a greedy algorithm would scan through the first DNA sequence, choose the most probable motif and add it to the motif matrix. This motif matrix is then used to scan through the second DNA sequence and choose the most probable motif based on the PPM of the motifs previously added to the matrix. Instead of starting out with a motif matrix and comparing all k-mers to it and repeating this process until a minimum Hamming Distance is found, the greedy algorithm builds up a motif matrix as it goes along. 
 
+One drawback of using a greedy algorithm to search for motifs is that it trades accuracy for speed by not considering all possible options and never reconsidering a previous decision.
 
+<img src="https://user-images.githubusercontent.com/68158694/88552381-ef8e5b80-d01b-11ea-973b-ea47aed6839d.png" width=250 align=left>
 
+This limitation can be illustrated by applying a greedy algorithm to a simple graph search; the algorithm below traverses the graph and adds the number on each node to a running total. It aims to find a path that will produce the highest total. Just from observation, we know that the path with the highest total must include the *99* node because it's the largest number by far. So the ideal path would be (7 -> 3 -> 1 -> 99).
+
+But by selecting the highest option at each step, never reconsidering a previous decision, and not evaluating all possible paths, the greedy algorith will instead choose the path (7 -> 12 -> 6 -> 9). The solution is found much faster but it is definitely not the overall optimal solution.
+
+.    .    .    .   .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    <img src="https://user-images.githubusercontent.com/68158694/88552363-eac9a780-d01b-11ea-9027-39d064cf8b1a.gif" width=450 align=center>    .    .    .    .   .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
+
+ 
 
 
 
