@@ -60,3 +60,32 @@ The algorithm no longer discounts *ATT* since, although both k-mers are not perf
 
 #### greedy algorithms:
 * [greedy motif search](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/greedy%20motif%20finder.py)
+
+## Randomised Algorithms
+These algorithms employ a degree of randomness as part of their logic - for instance, they might generate random inputs and then perform deterministic computations on them. Randomised algorithms fall into one of two groups: Monte Carlo algorithms and Las Vegas algorithms. Monte Carlo algorithms have a fixed runtime (at the slight expense of accuracy) whereas Las Vegas algorithms always return a correct solution although runtime varies.
+
+Randomness in a motif search seems counter-intuitive but it can be extremely useful for handling large datasets; whereas brute force algorithms must search through each possible option before returning a solution, randomised algorithms can reach a solution much faster. For instance, imagine we are looking for the number 7 in this list: [2, 14, 5, 9, 23, 42, 13, 7]. The order of this list is actually the worst-case scenario for this search because 7 is right at the end. 
+
+A brute force algorithm for finding 7 would look like this:
+
+```python
+for i in range(len(number_list)):
+  if number_list[i] == 7:
+    return(7)
+```
+
+It would require eight iterations to find 7 whereas a randomised algorithm could find 7 more efficiently by instead randomly stumbling upon it:
+
+```python
+r = random.randint(0, len(number_list)-1)
+while True:
+  if number_list[r] == 7:
+    return(7)
+```
+
+This randomised algorithm could require just one iteration to find 7. At worst, it would still require eight iterations- making it a more ideal option for searching than a brute force algorithm. 
+  
+For motif finding, a single iteration of a randomised search would return poor results; the algorithm must be repeated several hundreds of times to find the best approximate solution. In each iteration, *Randomised Motif Search* randomly selects one k-mer from each sequence in a list of DNA sequences and generates a PPM for the random motifs. This PPM is then used to identify one k-mer in each DNA sequence with the highest positional probability. These become the new motifs. If the new motifs are more conserved than the previous set of motifs, then it replaces them as the best set of motifs. The algorithm repeats until the new set of motifs are no longer an improvement on the best motifs. 
+After 1,000 iterations of this process, the regulatory motifs in the DNA sequences are identified.
+
+
