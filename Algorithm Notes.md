@@ -88,4 +88,10 @@ This randomised algorithm could require just one iteration to find 7. At worst, 
 For motif finding, a single iteration of a randomised search would return poor results; the algorithm must be repeated several hundreds of times to find the best approximate solution. In each iteration, *Randomised Motif Search* randomly selects one k-mer from each sequence in a list of DNA sequences and generates a PPM for the random motifs. This PPM is then used to identify one k-mer in each DNA sequence with the highest positional probability. These become the new motifs. If the new motifs are more conserved than the previous set of motifs, then it replaces them as the best set of motifs. The algorithm repeats until the new set of motifs are no longer an improvement on the best motifs. 
 After 1,000 iterations of this process, the regulatory motifs in the DNA sequences are identified.
 
+One drawback of *Randomised Motif Search* is that, in each iteration, all existing motifs are replaced which means that some correct motifs may be discarded and will have to be found again. A more cautious **Gibb's Sampler** algorithm, which replaces one motif at a time, could reduce runtime and increase the accuracy of the motif search. A Gibb's sampler randomly selects a single motif to be removed from a best motif set. It then uses a slightly more advanced random number generator to select a new motif from the DNA sequence (based on the PPM of the four remaining motifs). In essence, the randomness of the algorithm acts as a biased die - improving the selection of new motifs.
+
+#### randomised algorithms:
+  * [generate random k-mers](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/generate%20random%20k-mers.py)
+  * [randomised motif search](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/randomised%20motif%20search.py)
+  * [Gibb's sampler](https://github.com/ClarissaPereira/Tick-TOC1/blob/master/gibbs%20sampler.py)
 
