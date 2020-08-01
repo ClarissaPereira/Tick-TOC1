@@ -85,7 +85,7 @@ while True:
 
 This randomised algorithm could require just one iteration to find 7. At worst, it would still require eight iterations- making it a more ideal option for searching than a brute force algorithm. 
 
-A classic use of a Monte Carlo algorithm is to approximate the value of pi. The algorithm models a circle nested in a square of the same 'radius' so that the ratio of areas (circle/square) = pi/4. Points are randomly scattered within the square; if they fall inside the circle they turn green, otherwise they turn red. The number of green points divided by the total number of points is equivalent to the ratio of areas. Pi can then be calculated as (total # of green points / total # of points) x 4. Below, i have illustrated this concept using Python Turtle:
+A classic use of a Monte Carlo algorithm is to approximate the value of pi. The algorithm models a circle nested in a square of the same 'radius' so that the ratio of areas (circle/square) = pi/4. Points are randomly scattered within the square; if they fall inside the circle they turn green, otherwise they turn red. The number of green points divided by the total number of points is equivalent to the ratio of areas. Pi can then be calculated as (total # of green points / total # of points) x 4. Below, I have illustrated this concept using Python Turtle:
 
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/68158694/89105283-bab54680-d417-11ea-9713-3f0a3a133644.gif)
   
